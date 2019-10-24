@@ -1,7 +1,26 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
-const Home = () => {
-  return <div>Home</div>;
+import Counter from '../../components/Counter';
+
+const Home = ({ counter, dispatch }) => {
+  const action = type => dispatch({ type });
+  return (
+    <div>
+      <h2>Home</h2>
+      <Counter
+        value={counter}
+        onIncrement={() => action('INCREMENT')}
+        onDecrement={() => action('DECREMENT')}
+        onIncrementIfOdd={() => action('INCREMENT_IF_ODD')}
+        onIncrementAsync={() => action('INCREMENT_ASYNC')}
+      />
+    </div>
+  );
 };
 
-export default Home;
+const mapStateToProps = state => ({
+  counter: state,
+});
+
+export default connect(mapStateToProps)(Home);
