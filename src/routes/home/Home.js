@@ -3,14 +3,13 @@ import { connect } from 'react-redux';
 
 import Counter from '../../components/Counter';
 
-const Home = props => {
-  const action = type => store.dispatch({ type });
-  console.log('props : ', props);
+const Home = ({ counter, dispatch }) => {
+  const action = type => dispatch({ type });
   return (
     <div>
       <h2>Home</h2>
       <Counter
-        value={'store.getState()'}
+        value={counter}
         onIncrement={() => action('INCREMENT')}
         onDecrement={() => action('DECREMENT')}
         onIncrementIfOdd={() => action('INCREMENT_IF_ODD')}
